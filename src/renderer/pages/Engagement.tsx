@@ -109,7 +109,7 @@ const Engagement = () => {
             <Input placeholder="Client name" />
           </Form.Item>
           <Form.Item name="type" label="Type" rules={[{ required: true }]}>
-            <Select options={ENGAGEMENT_TYPES.map(t => ({ value: t.value, label: t.label }))} />
+            <Select options={ENGAGEMENT_TYPES.map(et => ({ value: et.value, label: et.label }))} />
           </Form.Item>
           <Form.Item name="scope" label={t('engagement.scope')} rules={[{ required: true }]}>
             <Input.TextArea rows={4} placeholder="IPs, CIDRs, domains (comma or newline separated)" />

@@ -20,6 +20,7 @@
   "engagement.status.active": "进行中",
   "engagement.status.paused": "已暂停",
   "engagement.status.completed": "已完成",
+  "engagement.status.archived": "已归档",
   "agents.title": "代理控制台",
   "agents.filter": "按领域筛选",
   "agents.tier1": "Tier 1 - 咨询",

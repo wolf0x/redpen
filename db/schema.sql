@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS vulns (
   cve TEXT NOT NULL DEFAULT '',
   description TEXT NOT NULL DEFAULT '',
   evidence_file TEXT NOT NULL DEFAULT '',
-  status TEXT NOT NULL DEFAULT 'unconfirmed' CHECK(status IN ('unconfirmed','confirmed','exploited','mitigated')),
+  status TEXT NOT NULL DEFAULT 'unconfirmed' CHECK(status IN ('unconfirmed','confirmed','exploited','mitigated','fixed','accepted')),
   poc_output TEXT NOT NULL DEFAULT '',
   mitre_id TEXT NOT NULL DEFAULT '',
   tool_used TEXT NOT NULL DEFAULT '',

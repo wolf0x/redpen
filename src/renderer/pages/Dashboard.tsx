@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { useEngagementStore } from '../stores/engagementStore';
 import { useFindingsStore } from '../stores/findingsStore';
 import { useAppStore } from '../stores/appStore';
-import { SEVERITY_COLORS } from '../../shared/constants';
 
 const Dashboard = () => {
   const { t } = useTranslation();

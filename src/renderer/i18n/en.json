@@ -20,6 +20,7 @@
   "engagement.status.active": "Active",
   "engagement.status.paused": "Paused",
   "engagement.status.completed": "Completed",
+  "engagement.status.archived": "Archived",
   "agents.title": "Agent Console",
   "agents.filter": "Filter by Domain",
   "agents.tier1": "Tier 1 - Advisory",

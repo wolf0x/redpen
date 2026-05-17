@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Typography, Timeline, Card, Row, Col, Progress, Tag, Space, List, Empty, Button, Divider } from 'antd';
+import { Typography, Timeline, Card, Row, Col, Progress, Tag, Space, List, Empty, Divider } from 'antd';
 import { CheckCircleOutlined, ClockCircleOutlined, LockOutlined, FolderOpenOutlined, FileTextOutlined } from '@ant-design/icons';
 import { PENTEST_PHASES } from '../../shared/constants';
 import { useAppStore } from '../stores/appStore';

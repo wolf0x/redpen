@@ -179,7 +179,27 @@ ${vulns.filter(v => v.status === 'unconfirmed').map(v => `- ${v.title} (${v.seve
       message.warning('Generate a report first');
       return;
     }
-    const blob = new Blob([preview], { type: 'text/markdown' });
+    let content: string;
+    let mimeType: string;
+    if (format === 'json') {
+      const jsonData = {
+        engagement: { client: activeEngagement?.client, type: activeEngagement?.type, scope: activeEngagement?.scope },
+        report_type: reportType,
+        generated_at: new Date().toISOString(),
+        summary: { hosts: hosts.length, vulns: vulns.length, credentials: credentials.length, chains: chains.length },
+        vulns: vulns.map(v => ({ title: v.title, severity: v.severity, cvss: v.cvss, cve: v.cve, status: v.status, mitre_id: v.mitre_id })),
+        hosts: hosts.map(h => ({ ip: h.ip, hostname: h.hostname, os: h.os, status: h.status })),
+        credentials: credentials.map(c => ({ username: c.username, domain: c.domain, access_level: c.access_level, source: c.source })),
+        chains: chains.map(ch => { let steps = []; try { steps = JSON.parse(ch.steps); } catch {} return { name: ch.name, score: ch.score, status: ch.status, steps }; }),
+        report_markdown: preview,
+      };
+      content = JSON.stringify(jsonData, null, 2);
+      mimeType = 'application/json';
+    } else {
+      content = preview;
+      mimeType = 'text/markdown';
+    }
+    const blob = new Blob([content], { type: mimeType });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;

@@ -5,7 +5,6 @@ import { CheckOutlined, CloseOutlined, PlayCircleOutlined, StopOutlined, LockOut
 import { useFindingsStore } from '../stores/findingsStore';
 import { useEngagementStore } from '../stores/engagementStore';
 import { useAppStore } from '../stores/appStore';
-import { NOISE_LEVELS } from '../../shared/constants';
 
 const ExecutionCenter = () => {
   const { t } = useTranslation();

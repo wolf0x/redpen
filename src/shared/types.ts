@@ -50,7 +50,7 @@ export interface Vuln {
   cve: string;
   description: string;
   evidence_file: string;
-  status: 'unconfirmed' | 'confirmed' | 'exploited' | 'mitigated';
+  status: 'unconfirmed' | 'confirmed' | 'exploited' | 'mitigated' | 'fixed' | 'accepted';
   poc_output: string;
   mitre_id: string;
   tool_used: string;
