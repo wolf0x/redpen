@@ -1,0 +1,14 @@
+{
+  "plugins": [
+    "./plugins/scope-gate.ts",
+    "./plugins/cmd-audit.ts",
+    "./plugins/session-sync.ts"
+  ],
+  "commands": "./commands",
+  "agents": "./agents",
+  "instructions": "../AGENTS.md",
+  "settings": {
+    "bashApproval": "gate",
+    "skillPermissions": "auto"
+  }
+}

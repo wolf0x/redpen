@@ -1,0 +1,14 @@
+{
+  "plugins": [
+    "./.opencode/plugins/scope-gate.ts",
+    "./.opencode/plugins/cmd-audit.ts",
+    "./.opencode/plugins/session-sync.ts"
+  ],
+  "commands": "./.opencode/commands",
+  "agents": "./.opencode/agents",
+  "instructions": "./AGENTS.md",
+  "settings": {
+    "bashApproval": "gate",
+    "skillPermissions": "auto"
+  }
+}

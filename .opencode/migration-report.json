@@ -1,0 +1,393 @@
+{
+  "converted": [
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/ad-attacker.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/ad-attacker.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/api-security.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/api-security.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/attack-planner.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/attack-planner.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/bizlogic-hunter.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/bizlogic-hunter.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/bug-bounty.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/bug-bounty.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/c2-operator.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/c2-operator.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/cicd-redteam.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/cicd-redteam.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/cloud-security.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/cloud-security.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/container-breakout.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/container-breakout.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/credential-tester.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/credential-tester.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/ctf-solver.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/ctf-solver.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/detection-engineer.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/detection-engineer.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/engagement-planner.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/engagement-planner.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/exploit-chainer.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/exploit-chainer.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/exploit-guide.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/exploit-guide.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/forensics-analyst.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/forensics-analyst.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/llm-redteam.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/llm-redteam.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/malware-analyst.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/malware-analyst.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/mobile-pentester.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/mobile-pentester.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/opsec-anonymizer.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/opsec-anonymizer.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/osint-collector.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/osint-collector.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/payload-crafter.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/payload-crafter.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/phishing-operator.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/phishing-operator.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/poc-validator.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/poc-validator.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/privesc-advisor.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/privesc-advisor.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/recon-advisor.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/recon-advisor.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/report-generator.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/report-generator.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/reverse-engineer.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/reverse-engineer.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/social-engineer.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/social-engineer.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/stig-analyst.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/stig-analyst.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/swarm-orchestrator.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/swarm-orchestrator.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/threat-modeler.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/threat-modeler.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/vuln-scanner.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/vuln-scanner.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/web-hunter.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/web-hunter.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/agents/wireless-pentester.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/agents/wireless-pentester.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/commands/agents-for.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/commands/agents-for.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/commands/memory.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/commands/memory.md",
+      "status": "warning"
+    },
+    {
+      "source": "/home/administrator/CCode/redpen/.claude/commands/recommend.md",
+      "target": "/home/administrator/CCode/redpen/.opencode/commands/recommend.md",
+      "status": "warning"
+    }
+  ],
+  "warnings": [
+    {
+      "file": "ad-attacker.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "api-security.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "attack-planner.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "bizlogic-hunter.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "bug-bounty.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "c2-operator.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "cicd-redteam.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "cloud-security.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "container-breakout.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "credential-tester.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "ctf-solver.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "detection-engineer.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "engagement-planner.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "exploit-chainer.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "exploit-guide.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "forensics-analyst.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "llm-redteam.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "malware-analyst.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "mobile-pentester.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "opsec-anonymizer.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "osint-collector.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "payload-crafter.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "phishing-operator.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "poc-validator.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "privesc-advisor.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "recon-advisor.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "report-generator.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "reverse-engineer.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "social-engineer.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "stig-analyst.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "swarm-orchestrator.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "threat-modeler.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "vuln-scanner.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "web-hunter.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "wireless-pentester.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "agents-for.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "memory.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    },
+    {
+      "file": "recommend.md",
+      "field": "tools",
+      "reason": "Tools field has no direct OpenCode equivalent, preserved as metadata"
+    }
+  ],
+  "skipped": [
+    {
+      "file": "_scope-guard.md",
+      "reason": "System guard, handled by plugins"
+    }
+  ],
+  "timestamp": "2026-05-17T00:49:37.554Z"
+}

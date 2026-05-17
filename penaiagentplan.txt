@@ -1,0 +1,154 @@
+分析这个项目并参考下面方案：https://github.com/0xSteph/pentest-ai-agents.git，实施改造，将该项目由claude code转为open code，
+
+这个仓库本质上是一个基于提示词的“多代理作战手册 + 本地执行/记录工具链”，非常适合做成一个 Electron GUI 控制台。  
+你要的能力“创建/修改/执行动作、看过程、生成报告、配置管理”都能覆盖，而且可以和当前项目栈（Electron + React）直接对接。
+
+**项目分析（面向 GUI 建模）**
+1. 运行模式是双态：
+1. Tier 1 咨询态：分析输入、给建议、不执行。
+2. Tier 2 执行态：组命令、做范围校验、用户批准后执行、落证据。
+2. 安全机制已经有清晰约束：
+1. 强制 scope 声明。
+2. 命令噪声等级（QUIET/MODERATE/LOUD）。
+3. 硬拒绝清单（DoS/越界扫描等）。
+4. 证据文件命名与保存规则。
+3. 数据层已经成型：
+1. SQLite 表覆盖 engagement、host、service、vuln、credential、chain、session log。
+2. 已有统计、筛选、导出、handoff 报告能力。
+4. CLI 功能完备但可用性不足：
+1. 命令门槛高，跨会话状态分散。
+2. 过程可视化弱（执行链、审批链、证据链）。
+
+**GUI 方案（完整可用版）**
+1. 工作台（Dashboard）
+1. Engagement 总览卡片：进行中、风险分布、确认率、链路完成度。
+2. 最近活动时间线：谁在什么时候执行了什么动作。
+3. 一键恢复会话（继续上次 engagement）。
+2. Engagement 管理
+1. 新建/编辑 engagement：客户、类型、授权范围、ROE、窗口期。
+2. Scope 可视编辑：IP/CIDR/域名分组、到期提醒、冲突校验。
+3. 多 engagement 切换，自动绑定上下文。
+3. Agent 控制台
+1. Agent 列表（35 个）按域过滤，显示 Tier、能力、风险。
+2. Agent 配置：模型、温度、工具开关、默认策略。
+3. Agent Prompt 编辑器：可视 diff、版本历史、回滚。
+4. 执行中心（关键）
+1. 任务编排：选择 Agent + 目标 + 动作模板。
+2. 命令审批队列：执行前弹窗展示命令、目标、噪声级、预期影响。
+3. 实时执行流：stdout/stderr、进度、中断/重试、证据自动归档。
+4. Scope Gate 前置校验：越界直接阻断并解释原因。
+5. 过程可观测（你要求的“了解工作过程”）
+1. 攻击链视图（Graph）：从 recon 到 report 的阶段进度。
+2. 事件时间线：决策点、审批点、执行点、产出点。
+3. 证据浏览器：按 host/service/vuln/agent 反查原始证据。
+6. Findings 数据中心
+1. Host/Service/Vuln/Cred/Chain 五大视图。
+2. 批量编辑状态（unconfirmed/confirmed/exploited）。
+3. 自动关联 MITRE/CVE/CVSS，支持筛选和优先级排序。
+7. 报告中心
+1. 一键生成：技术报告、管理层摘要、handoff 报告。
+2. 模板化章节：范围、方法、发现、影响、修复建议、证据附录。
+3. 导出：Markdown/PDF/JSON。
+8. 配置管理中心（你要求的“配置管理相关方案和工作”）
+1. 策略配置：硬拒绝规则、噪声阈值、审批策略（全量审批/高危审批）。
+2. 工具链健康：安装检测面板（替代命令行审计）。
+3. 模型与成本策略：按 Agent 分配模型，token/cost 上限告警。
+4. 环境配置：本地模型端点、代理、容器执行配置。
+
+**推荐系统架构（落地到你当前 Electron 项目）**
+1. 前端：React + Zustand + Ant Design（你现有风格可复用）。
+2. 主进程服务层：
+1. AgentService：加载/更新 agent prompt 与 metadata。
+2. ScopeService：范围解析、CIDR/域名匹配、越界检测。
+3. ExecutionService：命令排队、审批、执行、取消、日志流。
+4. FindingsService：SQLite CRUD、统计、导出。
+5. ReportService：模板渲染与文档导出。
+3. 数据层：
+1. 继续用 SQLite，沿用现有 findings 结构并增加 gui 专用表（审批记录、任务状态、配置版本）。
+4. 进程模型：
+1. UI 只发意图，不直接执行命令。
+2. 执行统一走主进程审批网关，确保可审计、可追踪。
+
+**关键交互流程（端到端）**
+1. 创建 Engagement
+1. 填写范围与规则。
+2. 系统做 scope 预校验并保存。
+2. 执行动作
+1. 选 Agent + 动作模板。
+2. 生成命令预览与风险标签。
+3. 用户批准后执行，实时显示过程。
+4. 自动写入 findings 与证据索引。
+3. 生成报告
+1. 选择报告模板与时间范围。
+2. 自动聚合 findings/链路/日志。
+3. 导出并归档版本。
+
+ 
+目标是“从 Claude Code 迁到 OpenCode 后仍然完整可用”，当前项目还缺几块关键拼图，主要不是 agent 内容本身，而是**运行时机制**和**分发方式**。
+
+**还缺的关键点**
+1. 安装链路仍是 Claude 优先。
+1. 现在核心安装逻辑是装到 `.claude` 目录。
+2. 缺少面向 OpenCode 的一键安装入口（`.opencode` 目录、`opencode.json`、plugin 注册）。
+2. 命令体系没做 OpenCode 原生化。
+1. 目前有 Claude 风格 slash commands。
+2. 缺少 OpenCode 命令 frontmatter 标准化（`agent`、`subtask`、`model` 等）和批量生成机制。
+3. “自动路由体验”有降级风险。
+1. Claude 子代理路由在原环境天然强。
+2. OpenCode 下如果只做简单转换，容易退化成“手动 `/agent-name` 调用”。
+3. 需要补一层推荐路由（类似 `/recommend`）保证易用性。
+4. Scope Guard 仍偏“提示词软约束”。
+1. 现在主要靠 prompt + 人工审批。
+2. OpenCode 应补 plugin 级前置校验，做成更硬的执行拦截（越界目标、禁用行为、危险命令模式）。
+5. Tier 2 执行安全模型没有 OpenCode 版闭环。
+1. 需要把命令审批、噪声等级、证据落盘、拒绝原因记录串成统一流水。
+2. 否则“能执行”但不“可审计”。
+6. 文档与脚本口径不一致风险。
+1. 文档提到的 OpenCode 适配脚本能力和现有仓库实际结构存在偏差。
+2. 需要一次“文档-脚本-目录”三方对齐，避免用户照文档操作失败。
+7. 缺少迁移验收测试矩阵。
+1. 没有明确验证“哪些 agent 在 OpenCode 下 100%可用、哪些降级、哪些禁用”。
+2. 没有自动化 smoke tests（命令加载、agent 调用、db 写入、scope 拦截）。
+
+采用下面**方案 B：混合模式（推荐，1-2 周）**
+1. 保留 `.claude` 作为源，生成 `.opencode` 产物（agent/command）。
+2. 新增 OpenCode installer（支持 global/project）。
+3. 增加 1 个核心安全 plugin：
+1. `tool.execute.before` 做 scope/禁用行为拦截。
+2. `tool.execute.after` 做日志和证据索引。
+4. 将 `/recommend` 和 `/agents-for` 做 OpenCode 原生命令化。
+5. 加 smoke tests + 迁移验收文档。
+6. 结果：功能完整、风险可控、维护成本可接受。
+
+
+理由：
+1. 保留现有资产，不推翻 35 个 agent 内容。
+2. 补齐最关键短板：安装、命令原生化、Scope Guard 硬约束、验收测试。
+3. 能快速把“可用”提升到“可用且可信”。
+
+
+**方案 B 的落地步骤（执行版）**
+1. 建立转换管线。
+1. 输入：Claude agent/command 源文件。
+2. 输出：OpenCode 可加载目录与配置。
+3. 产出一致性报告（转换成功/降级项）。
+2. 新增 OpenCode 安装器。
+1. global/project 两种模式。
+2. 自动生成或更新 `opencode.json`。
+3. 注入 plugin 与命令注册。
+3. 实现 Scope/Safety plugin（最重要）。
+1. 前置：目标在 scope、拒绝硬禁用清单、命令模式校验。
+2. 后置：记录命令、证据路径、执行结果、agent 名称、时间戳。
+3. 会话结束：写入 handoff/summary。
+4. OpenCode 命令层重建。
+1. 迁移 `/recommend`、`/agents-for`、`/memory`。
+2. 保证 `$ARGUMENTS`、文件引用、shell 注入能力一致。
+5. 数据库与报告链路打通。
+1. 保持 findings/handoff 流程不变。
+2. 增加 OpenCode 上下文变量适配。
+6. 做验收矩阵。
+1. Tier 1 全量通过。
+2. Tier 2 重点 agent 逐个验证（in-scope、out-of-scope、拒绝清单、证据落盘、日志写入）。
+3. 输出“支持级别表”。
+
+

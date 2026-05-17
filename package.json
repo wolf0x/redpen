@@ -1,0 +1,45 @@
+{
+  "name": "redpen",
+  "version": "0.1.0",
+  "description": "Pentest AI Agent Platform - Electron GUI for offensive security operations",
+  "main": "dist/main/index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && tsc -p tsconfig.node.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "converter": "tsx scripts/converter-cli.ts"
+  },
+  "dependencies": {
+    "antd": "^5.22.0",
+    "@ant-design/icons": "^5.5.0",
+    "better-sqlite3": "^11.6.0",
+    "dayjs": "^1.11.13",
+    "gray-matter": "^4.0.3",
+    "i18next": "^23.16.0",
+    "ip-cidr": "^4.0.0",
+    "marked": "^15.0.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "react-i18next": "^15.1.0",
+    "react-router-dom": "^6.28.0",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "vite": "^6.0.0",
+    "vitest": "^2.1.0"
+  },
+  "build": {
+    "appId": "com.redpen.pentest",
+    "productName": "RedPen",
+    "files": [
+      "dist/**/*"
+    ]
+  }
+}
