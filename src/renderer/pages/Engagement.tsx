@@ -69,16 +69,16 @@ const Engagement = () => {
     }
   };
 
-  const statusColors: Record<string, string> = { planning: 'orange', active: 'green', paused: 'default', completed: 'blue', archived: 'default' };
+  const statusColors: Record<string, string> = { planning: 'orange', active: 'green', paused: 'default', completed: 'cyan', archived: 'default' };
 
   const columns = [
     { title: 'Client', dataIndex: 'client', key: 'client', render: (v: string, r: Engagement) => (
-      <a onClick={() => { setActiveEngagement(r); }}>{v}</a>
+      <a onClick={() => { setActiveEngagement(r); }} style={{ color: '#00f0ff' }}>{v}</a>
     )},
-    { title: 'Type', dataIndex: 'type', key: 'type', render: (v: string) => <Tag color="blue">{v}</Tag> },
+    { title: 'Type', dataIndex: 'type', key: 'type', render: (v: string) => <Tag color="cyan">{v}</Tag> },
     { title: t('common.status'), dataIndex: 'status', key: 'status', render: (v: string) => <Tag color={statusColors[v]}>{t(`engagement.status.${v}`)}</Tag> },
     { title: t('engagement.scope'), dataIndex: 'scope', key: 'scope', ellipsis: true },
-    { title: 'Period', key: 'period', render: (_: any, r: Engagement) => `${r.start_date} ~ ${r.end_date}` },
+    { title: 'Period', key: 'period', render: (_: any, r: Engagement) => <span style={{ color: '#8888aa' }}>{r.start_date} ~ {r.end_date}</span> },
     { title: t('common.actions'), key: 'actions', render: (_: any, r: Engagement) => (
       <Space>
         <Button size="small" icon={<EditOutlined />} onClick={() => handleEdit(r)}>{t('common.edit')}</Button>
@@ -89,8 +89,8 @@ const Engagement = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
-        <Typography.Title level={3} style={{ margin: 0 }}>{t('engagement.title')}</Typography.Title>
+      <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Typography.Title level={3} style={{ margin: 0 }} className="neon-title">{t('engagement.title')}</Typography.Title>
         <Button type="primary" icon={<PlusOutlined />} onClick={handleCreate}>{t('engagement.create')}</Button>
       </div>
 
@@ -147,7 +147,7 @@ const Engagement = () => {
           placeholder={"203.0.113.0/24\nexample.com\n10.0.0.1"}
         />
         <div style={{ marginTop: 16 }}>
-          <Typography.Text strong>Parsed entries:</Typography.Text>
+          <Typography.Text strong style={{ color: '#00f0ff' }}>Parsed entries:</Typography.Text>
           <div style={{ marginTop: 8 }}>
             {scopeText.split(/[,\n]/).map(s => s.trim()).filter(Boolean).map((entry, i) => {
               const isCidr = /^\d+\.\d+\.\d+\.\d+\/\d+$/.test(entry);

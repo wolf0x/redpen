@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Typography, Timeline, Card, Row, Col, Progress, Tag, Space, List, Empty, Divider } from 'antd';
 import { CheckCircleOutlined, ClockCircleOutlined, LockOutlined, FolderOpenOutlined, FileTextOutlined } from '@ant-design/icons';
@@ -53,9 +53,18 @@ const ProcessTracking = () => {
       date: l.created_at,
     }));
 
+  const phaseColors: Record<string, string> = {
+    recon: '#00f0ff',
+    enum: '#4d7cff',
+    'vuln-analysis': '#ff6b00',
+    exploitation: '#ff073a',
+    'post-exploitation': '#bf00ff',
+    reporting: '#39ff14',
+  };
+
   return (
     <div>
-      <Typography.Title level={3}>{t('process.title')}</Typography.Title>
+      <Typography.Title level={3} className="neon-title">{t('process.title')}</Typography.Title>
 
       {!activeEngagement && (
         <Typography.Text type="secondary">Select an engagement from the Dashboard to track progress.</Typography.Text>
@@ -73,26 +82,27 @@ const ProcessTracking = () => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
                   <Space>
                     {phase.percent >= 80 ? (
-                      <CheckCircleOutlined style={{ color: '#52c41a' }} />
+                      <CheckCircleOutlined style={{ color: '#39ff14' }} />
                     ) : phase.percent > 0 ? (
-                      <ClockCircleOutlined style={{ color: '#faad14' }} />
+                      <ClockCircleOutlined style={{ color: '#ff6b00' }} className="neon-pulse" />
                     ) : (
-                      <LockOutlined style={{ color: '#bfbfbf' }} />
+                      <LockOutlined style={{ color: '#555570' }} />
                     )}
-                    <Typography.Text>{phase.label}</Typography.Text>
+                    <Typography.Text style={{ color: '#e8e8f0' }}>{phase.label}</Typography.Text>
                   </Space>
                   <Space>
                     <Typography.Text type="secondary" style={{ fontSize: 12 }}>
                       {phase.count} action{phase.count !== 1 ? 's' : ''}
                     </Typography.Text>
-                    <Typography.Text type="secondary">{phase.percent}%</Typography.Text>
+                    <Typography.Text style={{ color: phaseColors[phase.id] || '#8888aa' }}>{phase.percent}%</Typography.Text>
                   </Space>
                 </div>
                 <Progress
                   percent={phase.percent}
                   size="small"
                   showInfo={false}
-                  strokeColor={phase.percent >= 80 ? '#52c41a' : phase.percent > 0 ? '#faad14' : undefined}
+                  strokeColor={phaseColors[phase.id]}
+                  trailColor="#1a1a35"
                 />
               </div>
             ))}
@@ -110,22 +120,19 @@ const ProcessTracking = () => {
             {sessionLog.length > 0 ? (
               <Timeline
                 items={sessionLog.map(log => ({
-                  color: log.action === 'executed' ? 'green' : log.action === 'blocked' ? 'red' : log.action === 'denied' ? 'orange' : 'blue',
+                  color: log.action === 'executed' ? '#39ff14' : log.action === 'blocked' ? '#ff073a' : log.action === 'denied' ? '#ff6b00' : '#4d7cff',
                   children: (
                     <div>
                       <Space>
-                        <Tag>{log.agent}</Tag>
+                        <Tag color="cyan">{log.agent}</Tag>
                         <Tag color={log.action === 'executed' ? 'green' : log.action === 'blocked' ? 'red' : 'default'}>{log.action}</Tag>
                         <Typography.Text type="secondary" style={{ fontSize: 11 }}>
                           {new Date(log.created_at).toLocaleString()}
                         </Typography.Text>
                       </Space>
-                      <div style={{ marginTop: 4 }}>{log.summary}</div>
+                      <div style={{ marginTop: 4, color: '#e8e8f0' }}>{log.summary}</div>
                       {log.detail && (
-                        <div style={{
-                          marginTop: 4, background: '#f5f5f5', padding: '4px 8px', borderRadius: 4,
-                          fontFamily: 'monospace', fontSize: 11, color: '#595959',
-                        }}>
+                        <div className="terminal-block" style={{ marginTop: 4, padding: '4px 8px', fontSize: 11 }}>
                           {log.detail}
                         </div>
                       )}
@@ -141,7 +148,7 @@ const ProcessTracking = () => {
       </Row>
 
       {/* Evidence Browser */}
-      <Card title={<span><FolderOpenOutlined /> {t('process.evidence')}</span>} style={{ marginTop: 16 }}>
+      <Card title={<span><FolderOpenOutlined style={{ color: '#39ff14' }} /> {t('process.evidence')}</span>} style={{ marginTop: 16 }}>
         {evidenceFiles.length > 0 ? (
           <List
             size="small"
@@ -158,9 +165,9 @@ const ProcessTracking = () => {
                 }
               >
                 <List.Item.Meta
-                  avatar={<FileTextOutlined style={{ color: '#1890ff' }} />}
-                  title={<Typography.Text style={{ fontFamily: 'monospace', fontSize: 12 }}>{item.name}</Typography.Text>}
-                  description={<Tag>{item.agent}</Tag>}
+                  avatar={<FileTextOutlined style={{ color: '#00f0ff' }} />}
+                  title={<Typography.Text code style={{ fontSize: 12, color: '#39ff14' }}>{item.name}</Typography.Text>}
+                  description={<Tag color="cyan">{item.agent}</Tag>}
                 />
               </List.Item>
             )}

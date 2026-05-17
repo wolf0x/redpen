@@ -37,31 +37,31 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-        <Typography.Title level={3} style={{ margin: 0 }}>{t('dashboard.title')}</Typography.Title>
+      <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Typography.Title level={3} style={{ margin: 0 }} className="neon-title">{t('dashboard.title')}</Typography.Title>
         <Button icon={<ReloadOutlined />} onClick={() => loadEngagements()}>Refresh</Button>
       </div>
 
       {/* Stats Overview */}
       <Row gutter={[16, 16]}>
         <Col span={6}>
-          <Card bordered={false} style={{ background: '#1a1a2e' }}>
-            <Statistic title={t('findings.hosts')} value={totalStats.hosts} valueStyle={{ color: '#1890ff' }} />
+          <Card bordered={false} className="stat-card-cyan">
+            <Statistic title={t('findings.hosts')} value={totalStats.hosts} valueStyle={{ color: '#00f0ff' }} />
           </Card>
         </Col>
         <Col span={6}>
-          <Card bordered={false} style={{ background: '#1a1a2e' }}>
-            <Statistic title={t('findings.vulns')} value={totalStats.vulns} valueStyle={{ color: '#fa8c16' }} />
+          <Card bordered={false} className="stat-card-orange">
+            <Statistic title={t('findings.vulns')} value={totalStats.vulns} valueStyle={{ color: '#ff6b00' }} />
           </Card>
         </Col>
         <Col span={6}>
-          <Card bordered={false} style={{ background: '#1a1a2e' }}>
-            <Statistic title={t('findings.creds')} value={totalStats.creds} valueStyle={{ color: '#cf1322' }} />
+          <Card bordered={false} className="stat-card-red">
+            <Statistic title={t('findings.creds')} value={totalStats.creds} valueStyle={{ color: '#ff073a' }} />
           </Card>
         </Col>
         <Col span={6}>
-          <Card bordered={false} style={{ background: '#1a1a2e' }}>
-            <Statistic title={t('findings.chains')} value={totalStats.chains} valueStyle={{ color: '#722ed1' }} />
+          <Card bordered={false} className="stat-card-purple">
+            <Statistic title={t('findings.chains')} value={totalStats.chains} valueStyle={{ color: '#bf00ff' }} />
           </Card>
         </Col>
       </Row>
@@ -82,14 +82,15 @@ const Dashboard = () => {
                       <Card
                         size="small"
                         hoverable
+                        className="engagement-card"
                         onClick={() => { setActiveEngagement(eng); navigate('/engagements'); }}
-                        style={{ borderColor: criticalCount > 0 ? '#cf1322' : '#303030' }}
+                        style={{ borderColor: criticalCount > 0 ? '#ff073a' : undefined }}
                       >
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <div>
-                            <Typography.Text strong>{eng.client}</Typography.Text>
+                            <Typography.Text strong style={{ color: '#e8e8f0' }}>{eng.client}</Typography.Text>
                             <div>
-                              <Tag color="blue">{eng.type}</Tag>
+                              <Tag color="cyan">{eng.type}</Tag>
                               {criticalCount > 0 && <Tag color="red" icon={<WarningOutlined />}>{criticalCount} Critical/High</Tag>}
                             </div>
                             <Typography.Text type="secondary" style={{ fontSize: 12 }}>{eng.scope}</Typography.Text>
@@ -106,10 +107,10 @@ const Dashboard = () => {
                         {s && (
                           <div style={{ marginTop: 8 }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, marginBottom: 4 }}>
-                              <span>{s.host_count} hosts</span>
-                              <span>{s.confirmation_rate}% confirmed</span>
+                              <span style={{ color: '#8888aa' }}>{s.host_count} hosts</span>
+                              <span style={{ color: '#00f0ff' }}>{s.confirmation_rate}% confirmed</span>
                             </div>
-                            <Progress percent={s.chain_completion} size="small" showInfo={false} strokeColor="#722ed1" />
+                            <Progress percent={s.chain_completion} size="small" showInfo={false} strokeColor="#bf00ff" trailColor="#1a1a35" />
                           </div>
                         )}
                       </Card>
@@ -127,12 +128,12 @@ const Dashboard = () => {
             {sessionLog.length > 0 ? (
               <Timeline
                 items={sessionLog.slice(0, 10).map(log => ({
-                  color: log.action === 'executed' ? 'green' : log.action === 'blocked' ? 'red' : 'blue',
+                  color: log.action === 'executed' ? '#39ff14' : log.action === 'blocked' ? '#ff073a' : '#4d7cff',
                   children: (
                     <div>
-                      <Typography.Text strong style={{ fontSize: 12 }}>{log.agent}</Typography.Text>
-                      <div style={{ fontSize: 12, color: '#8c8c8c' }}>{log.summary}</div>
-                      <div style={{ fontSize: 11, color: '#595959' }}>{new Date(log.created_at).toLocaleString()}</div>
+                      <Typography.Text strong style={{ fontSize: 12, color: '#e8e8f0' }}>{log.agent}</Typography.Text>
+                      <div style={{ fontSize: 12, color: '#8888aa' }}>{log.summary}</div>
+                      <div style={{ fontSize: 11, color: '#555570' }}>{new Date(log.created_at).toLocaleString()}</div>
                     </div>
                   ),
                 }))}
@@ -155,7 +156,7 @@ const Dashboard = () => {
           ).map(([status, count]) => (
             <Col key={status}>
               <Space>
-                <Tag color={status === 'active' ? 'green' : status === 'completed' ? 'blue' : status === 'planning' ? 'orange' : 'default'}>
+                <Tag color={status === 'active' ? 'green' : status === 'completed' ? 'cyan' : status === 'planning' ? 'orange' : 'default'}>
                   {t(`engagement.status.${status}`)}
                 </Tag>
                 <Typography.Text strong>{count}</Typography.Text>

@@ -51,9 +51,10 @@ const App = () => {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
+      <div className="scanline-overlay" />
       <Sider width={220} theme="dark">
-        <div style={{ height: 64, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ color: '#fff', fontSize: 20, fontWeight: 'bold' }}>RedPen</span>
+        <div style={{ height: 64, display: 'flex', alignItems: 'center', justifyContent: 'center', borderBottom: '1px solid #1e1e3a' }}>
+          <span className="redpen-logo">RedPen</span>
         </div>
         <Menu
           theme="dark"
@@ -61,19 +62,28 @@ const App = () => {
           selectedKeys={[location.pathname]}
           items={menuItems}
           onClick={({ key }) => navigate(key)}
+          style={{ paddingTop: 8 }}
         />
+        <div style={{ position: 'absolute', bottom: 16, left: 0, right: 0, textAlign: 'center' }}>
+          <div style={{ fontSize: 10, color: '#555570', letterSpacing: 2, textTransform: 'uppercase' }}>
+            v0.1.0 · Pentest AI
+          </div>
+        </div>
       </Sider>
       <Layout>
-        <Header style={{ background: '#141414', padding: '0 24px', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+        <Header style={{ padding: '0 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ fontSize: 12, color: '#555570' }}>
+            {location.pathname === '/' ? 'DASHBOARD' : location.pathname.slice(1).toUpperCase().replace('/', ' · ')}
+          </div>
           <Space>
             <Dropdown menu={langMenu} placement="bottomRight">
-              <Button icon={<GlobalOutlined />} type="text" style={{ color: '#fff' }}>
+              <Button icon={<GlobalOutlined />} type="text" style={{ color: '#00f0ff' }}>
                 {lang === 'zh' ? '中文' : 'EN'}
               </Button>
             </Dropdown>
           </Space>
         </Header>
-        <Content style={{ margin: 24, padding: 24, background: '#1f1f1f', borderRadius: 8, minHeight: 280 }}>
+        <Content style={{ margin: 24, padding: 24, borderRadius: 10, minHeight: 280, position: 'relative' }}>
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/engagements" element={<Engagement />} />

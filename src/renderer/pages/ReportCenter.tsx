@@ -216,7 +216,7 @@ ${vulns.filter(v => v.status === 'unconfirmed').map(v => `- ${v.title} (${v.seve
 
   return (
     <div>
-      <Typography.Title level={3}>{t('reports.title')}</Typography.Title>
+      <Typography.Title level={3} className="neon-title">{t('reports.title')}</Typography.Title>
 
       {!activeEngagement && (
         <Typography.Text type="secondary">Select an engagement from the Dashboard first.</Typography.Text>
@@ -224,7 +224,7 @@ ${vulns.filter(v => v.status === 'unconfirmed').map(v => `- ${v.title} (${v.seve
 
       <Row gutter={16}>
         <Col span={8}>
-          <Card title="Report Configuration" size="small">
+          <Card title={<span style={{ color: '#bf00ff' }}>Report Configuration</span>} size="small">
             <Space direction="vertical" style={{ width: '100%' }}>
               <div>
                 <Typography.Text strong>Engagement</Typography.Text>
@@ -253,10 +253,10 @@ ${vulns.filter(v => v.status === 'unconfirmed').map(v => `- ${v.title} (${v.seve
                 <Typography.Text strong>Data Summary</Typography.Text>
                 <div style={{ marginTop: 4 }}>
                   <Space wrap>
-                    <Tag>{hosts.length} hosts</Tag>
-                    <Tag>{vulns.length} vulns</Tag>
-                    <Tag>{credentials.length} creds</Tag>
-                    <Tag>{chains.length} chains</Tag>
+                    <Tag color="cyan">{hosts.length} hosts</Tag>
+                    <Tag color="orange">{vulns.length} vulns</Tag>
+                    <Tag color="red">{credentials.length} creds</Tag>
+                    <Tag color="purple">{chains.length} chains</Tag>
                   </Space>
                 </div>
               </div>
@@ -266,7 +266,7 @@ ${vulns.filter(v => v.status === 'unconfirmed').map(v => `- ${v.title} (${v.seve
             </Space>
           </Card>
 
-          <Card title="Export" size="small" style={{ marginTop: 12 }}>
+          <Card title={<span style={{ color: '#39ff14' }}>Export</span>} size="small" style={{ marginTop: 12 }}>
             <Space direction="vertical" style={{ width: '100%' }}>
               <Button icon={<DownloadOutlined />} onClick={() => handleExport('md')} block disabled={!preview}>
                 {t('reports.export.md')}
@@ -283,21 +283,17 @@ ${vulns.filter(v => v.status === 'unconfirmed').map(v => `- ${v.title} (${v.seve
 
         <Col span={16}>
           <Card
-            title="Report Preview"
+            title={<span style={{ color: '#00f0ff' }}>Report Preview</span>}
             size="small"
             extra={preview ? <Typography.Text type="secondary">{preview.split('\n').length} lines</Typography.Text> : null}
           >
             {preview ? (
-              <div style={{
-                background: '#0d1117', padding: 24, borderRadius: 8, minHeight: 500,
-                fontFamily: 'monospace', fontSize: 12, color: '#c9d1d9', whiteSpace: 'pre-wrap',
-                maxHeight: 700, overflow: 'auto',
-              }}>
+              <div className="terminal-block" style={{ minHeight: 500, maxHeight: 700, overflow: 'auto', whiteSpace: 'pre-wrap' }}>
                 {preview}
               </div>
             ) : (
-              <div style={{ background: '#fafafa', padding: 48, borderRadius: 8, minHeight: 500, textAlign: 'center' }}>
-                <FileTextOutlined style={{ fontSize: 48, color: '#bfbfbf' }} />
+              <div style={{ background: '#0f0f1e', padding: 48, borderRadius: 8, minHeight: 500, textAlign: 'center' }}>
+                <FileTextOutlined style={{ fontSize: 48, color: '#2a2a55' }} />
                 <div style={{ marginTop: 16 }}>
                   <Typography.Text type="secondary">Click "Generate" to create a report preview</Typography.Text>
                 </div>
